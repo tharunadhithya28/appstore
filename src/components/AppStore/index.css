@@ -1,1 +1,14 @@
 /* Write your CSS here */
+.tabItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.appItems {
+  display: flex;
+  flex-wrap: wrap;
+}
+.bg-container {
+  background-color: pink;
+  text-align: center;
+}

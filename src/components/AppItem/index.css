@@ -1,1 +1,17 @@
 /* Write your CSS here */
+.appImage {
+  width: 150px;
+}
+.appStyle {
+  margin: 20px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.appName {
+  font-size: 25px;
+}

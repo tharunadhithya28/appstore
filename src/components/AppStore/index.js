@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import TabItem from '../TabItem'
 import AppItem from '../AppItem'
+import './index.css'
 
 const tabsList = [
   {tabId: 'SOCIAL', displayText: 'Social'},
@@ -292,18 +293,39 @@ const appsList = [
 ]
 
 class AppStore extends Component {
+  state = {searchInput: '', searchResults: appsList, activeTab: 'SOCIAL'}
+
+  searchApps = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  tabBasedResults = tabId => {
+    this.setState({activeTab: tabId})
+  }
+
   render() {
+    const {searchInput, activeTab} = this.state
+    const searchResults = appsList.filter(
+      eachList =>
+        eachList.appName.toLowerCase().includes(searchInput) &&
+        eachList.category === activeTab,
+    )
+
     return (
-      <div>
+      <div className="bg-container">
         <h1> App Store </h1>
-        <input type="search" />
-        <div>
+        <input type="search" onChange={this.searchApps} />
+        <div className="tabItems">
           {tabsList.map(eachList => (
-            <TabItem tabList={eachList} />
+            <TabItem
+              tabList={eachList}
+              tabBasedResults={this.tabBasedResults}
+              key={eachList.tabId}
+            />
           ))}
         </div>
-        <div>
-          {appsList.map(eachItem => (
+        <div className="appItems">
+          {searchResults.map(eachItem => (
             <AppItem appList={eachItem} />
           ))}
         </div>
